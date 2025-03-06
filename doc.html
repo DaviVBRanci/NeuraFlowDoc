@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação do Neuraflow</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #004d99;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        section {
+            padding: 20px;
+            margin: 20px;
+        }
+        .example {
+            background-color: #e9f7fd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .code-block {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="neuraflowlogo.webp" alt="Logo do Neuraflow">
+    <h1>Documentação do Neuraflow</h1>
+    <p>Uma biblioteca de aprendizado de máquina simples para Python</p>
+</header>
+
+<section>
+    <h2>Introdução</h2>
+    <p>O NeuraFlow é uma biblioteca de aprendizado de máquina em Python, baseada em redes neurais e outras técnicas de aprendizado supervisionado e não supervisionado. Ele fornece uma interface simples para treinar e avaliar modelos, além de permitir a manipulação avançada de dados.</p>
+    <p>A biblioteca utiliza scikit-learn, imblearn e outras bibliotecas populares de aprendizado de máquina para realizar tarefas como classificação, regressão, análise de desempenho, validação cruzada, entre outras.</p>
+</section>
+
+<section>
+    <h2>Instalação</h2>
+    <p>Para instalar o NeuraFlow, basta utilizar o pip para instalar as dependências necessárias:</p>
+    <div class="code-block">
+        pip install numpy joblib scikit-learn imbalanced-learn matplotlib
+    </div>
+</section>
+
+<section>
+    <h2>Estrutura da Classe <code>RedeNeural</code></h2>
+    <p>A classe <code>RedeNeural</code> é o principal componente da biblioteca. Ela contém vários métodos para treinamento, avaliação e análise de modelos de aprendizado de máquina. A classe foi projetada para ser flexível, suportando diferentes tipos de modelos e oferecendo várias ferramentas para análise e melhoria do desempenho.</p>
+    
+    <h3>Atributos</h3>
+    <ul>
+        <li><strong>camadas</strong>: Define o número de unidades em cada camada oculta da rede neural (utilizado pelo MLPClassifier). O valor padrão é [5].</li>
+        <li><strong>max_iter</strong>: Define o número máximo de iterações para o treinamento. O valor padrão é 1000.</li>
+        <li><strong>solver</strong>: O solver a ser usado no treinamento. O valor padrão é 'adam'.</li>
+        <li><strong>regularizacao</strong>: Tipo de regularização a ser utilizada no modelo. Pode ser 'l2' (MLPClassifier) ou 'l1' (LogisticRegression). O valor padrão é 'l2'.</li>
+        <li><strong>C</strong>: Parâmetro de regularização que controla a força da penalização, se estiver usando regularização L1 ou L2. O valor padrão é 1.0.</li>
+        <li><strong>model</strong>: O modelo de aprendizado de máquina (MLPClassifier ou LogisticRegression).</li>
+        <li><strong>historia</strong>: Histórico da curva de perda durante o treinamento.</li>
+    </ul>
+    
+    <h3>Métodos</h3>
+    <ul>
+        <li><strong>_init_(self, camadas=[5], max_iter=1000, solver='adam', regularizacao='l2', C=1.0)</strong>: Construtor da classe.</li>
+        <li><strong>treinar(self, X, y)</strong>: Treina o modelo utilizando os dados fornecidos em X (características) e y (rótulos).</li>
+        <li><strong>testar(self, X, y)</strong>: Avalia a acurácia do modelo.</li>
+        <li><strong>visualizar_aprendizado(self)</strong>: Exibe a curva de aprendizado.</li>
+        <li><strong>analise_importancia(self, X)</strong>: Exibe um gráfico das importâncias das características.</li>
+        <li><strong>salvar_modelo(self, nome_arquivo="modelo_treinado.pkl")</strong>: Salva o modelo treinado.</li>
+        <li><strong>carregar_modelo(self, nome_arquivo="modelo_treinado.pkl")</strong>: Carrega um modelo treinado.</li>
+        <li><strong>analise_desempenho(self, X, y)</strong>: Exibe um relatório detalhado sobre o desempenho do modelo.</li>
+        <li><strong>avaliacao_regressao(self, X, y)</strong>: Avalia o desempenho do modelo em problemas de regressão.</li>
+        <li><strong>cross_validation(self, X, y, k=5)</strong>: Realiza a validação cruzada no modelo.</li>
+        <li><strong>ajuste_hiperparametros(self, X, y)</strong>: Ajusta os hiperparâmetros do modelo.</li>
+        <li><strong>gerar_dados_aleatorios(self, n_amostras=1000, n_features=20, n_classes=2)</strong>: Gera um conjunto de dados aleatórios.</li>
+        <li><strong>normalizar_dados(self, X)</strong>: Normaliza os dados de entrada.</li>
+        <li><strong>aprender_completo(self, X, y)</strong>: Treina e avalia o modelo de forma completa.</li>
+        <li><strong>gerar_grafico_curva_aprendizado(self)</strong>: Gera um gráfico mostrando a curva de aprendizado.</li>
+        <li><strong>aprender_semi_supervisionado(self, X_rotulados, y_rotulados, X_nao_rotulados)</strong>: Realiza aprendizado semi-supervisionado.</li>
+        <li><strong>limpar_dados(self, X)</strong>: Remove dados faltantes ou substitui por zero.</li>
+        <li><strong>balancear_classes(self, X, y)</strong>: Aplica SMOTE para balancear classes.</li>
+        <li><strong>calcular_importancia_gini(self, X, y)</strong>: Calcula e exibe a importância das características usando o método Gini.</li>
+        <li><strong>otimizar_modelo(self, X, y)</strong>: Realiza a otimização dos hiperparâmetros do modelo.</li>
+        <li><strong>ajustar_taxa_aprendizado(self, X, y, taxa=0.001)</strong>: Ajusta a taxa de aprendizado do modelo.</li>
+        <li><strong>reduzir_dimensionais(self, X, n_componentes=2)</strong>: Reduz a dimensionalidade dos dados usando PCA.</li>
+        <li><strong>prever_probalidades(self, X)</strong>: Previsão de probabilidades das classes.</li>
+        <li><strong>transformar_dados(self, X)</strong>: Aplica transformações nos dados de entrada.</li>
+        <li><strong>atualizar_modelo(self, X, y)</strong>: Atualiza o modelo com novos dados.</li>
+        <li><strong>calcular_erro(self, X, y)</strong>: Calcula o erro do modelo.</li>
+        <li><strong>validar_modelo(self, X, y)</strong>: Valida o modelo com base nos dados de entrada e saída.</li>
+        <li><strong>verificar_dados_faltantes(self, X)</strong>: Verifica se há dados faltantes no conjunto de dados.</li>
+        <li><strong>ajustar_parametro(self, parametro, valor)</strong>: Ajusta um parâmetro específico do modelo.</li>
+        <li><strong>ajustar_regularizacao(self, regularizacao='l1')</strong>: Ajusta o tipo de regularização utilizada no modelo.</li>
+        <li><strong>exibir_modelo(self)</strong>: Exibe os detalhes do modelo atual.</li>
+        <li><strong>gerar_dados_classificados(self, n_amostras=1000, n_classes=2)</strong>: Gera um conjunto de dados classificados aleatoriamente.</li>
+        <li><strong>treinar_em_batch(self, X, y)</strong>: Treina o modelo em batches, embaralhando os dados.</li>
+        <li><strong>calcular_confusao(self, X, y)</strong>: Calcula a matriz de confusão para o modelo.</li>
+        <li><strong>obter_acuracia_teste(self, X, y)</strong>: Obtém a acurácia do modelo em um conjunto de teste.</li>
+        <li><strong>obter_acuracia_valida(self, X, y)</strong>: Obtém a acurácia média usando validação cruzada.</li>
+        <li><strong>otimizar_taxa_aprendizado_e_max_iter(self, X, y)</strong>: Otimiza a taxa de aprendizado e o número máximo de iterações.</li>
+        <li><strong>treinar_todos_dados(self, X, y)</strong>: Treina o modelo utilizando todos os dados disponíveis.</li>
+        <li><strong>salvar_pesos(self, nome_arquivo="pesos_modelo.pkl")</strong>: Salva os pesos do modelo treinado.</li>
+        <li><strong>carregar_pesos(self, nome_arquivo="pesos_modelo.pkl")</strong>: Carrega os pesos de um modelo treinado.</li>
+        <li><strong>gerenciar_dados_faltantes(self, X)</strong>: Gerencia dados faltantes no conjunto de dados.</li>
+        <li><strong>visualizar_importancia_features(self, X)</strong>: Visualiza a importância das características.</li>
+        <li><strong>realizar_previsao(self, X)</strong>: Realiza previsões com o modelo treinado.</li>
+        <li><strong>preprocessar_dados(self, X)</strong>: Aplica técnicas de pré-processamento nos dados.</li>
+        <li><strong>criar_matriz_confusao(self, X, y)</strong>: Cria e retorna a matriz de confusão.</li>
+        <li><strong>balancear_classes_smote(self, X, y)</strong>: Aplica SMOTE para balancear classes no conjunto de dados.</li>
+        <li><strong>realizar_classificacao(self, X, y)</strong>: Realiza a classificação usando o modelo treinado.</li>
+        <li><strong>visualizar_pca(self, X)</strong>: Visualiza a redução de dimensionalidade usando PCA.</li>
+        <li><strong>realizar_ajuste(self, X, y)</strong>: Realiza o ajuste de hiperparâmetros do modelo.</li>
+        <li><strong>aplicar_regularizacao(self, X, y)</strong>: Aplica regularização ao modelo durante o treinamento.</li>
+        <li><strong>estimar_dados_faltantes(self, X)</strong>: Estima dados faltantes usando média.</li>
+        <li><strong>ajustar_novos_parametros(self, X, y, novos_parametros)</strong>: Ajusta novos parâmetros do modelo.</li>
+        <li><strong>aplicar_dropout(self, X)</strong>: Aplica dropout nos dados de entrada.</li>
+        <li><strong>aplicar_early_stopping(self, X, y)</strong>: Aplica early stopping durante o treinamento.</li>
+        <li><strong>gerar_rna(self, X, y)</strong>: Gera e treina uma rede neural com os dados fornecidos.</li>
+        <li><strong>realizar_ajuste_hiperparametros_completo(self, X, y)</strong>: Realiza ajuste completo de hiperparâmetros.</li>
+        <li><strong>fazer_previsao_com_proba(self, X)</strong>: Faz previsões com probabilidades.</li>
+        <li><strong>treinar_com_batch(self, X, y)</strong>: Treina o modelo utilizando batches de dados.</li>
+        <li><strong>obter_erro_quadratico(self, X, y)</strong>: Obtém o erro quadrático médio do modelo.</li>
+        <li><strong>ajustar_com_loss(self, X, y)</strong>: Ajusta o modelo com base na perda.</li>
+        <li><strong>visualizar_curva_perda(self)</strong>: Visualiza a curva de perda durante o treinamento.</li>
+        <li><strong>verificar_regularizacao(self)</strong>: Verifica o tipo de regularização aplicada no modelo.</li>
+        <li><strong>realizar_predicao_classificao(self, X)</strong>: Realiza predição de classificação.</li>
+        <li><strong>aplicar_deep_learning(self, X, y)</strong>: Aplica uma rede neural profunda para treinamento.</li>
+        <li><strong>salvar_modelo_em_treinamento(self, arquivo="modelo_treinado.pkl")</strong>: Salva o modelo em treinamento.</li>
+        <li><strong>carregar_modelo_em_treinamento(self, arquivo="modelo_treinado.pkl")</strong>: Carrega o modelo em treinamento.</li>
+        <li><strong>classificar_dados(self, X, y)</strong>: Classifica os dados usando o modelo treinado.</li>
+        <li><strong>calcular_acuracia(self, X, y)</strong>: Calcula a acurácia do modelo.</li>
+        <li><strong>avaliar_modelo(self, X, y)</strong>: Avalia o modelo e retorna um relatório de desempenho.</li>
+        <li><strong>plotar_dados(self, X, y)</strong>: Plota os dados de entrada para visualização.</li>
+        <li><strong>ajustar_taxa_aprendizado_otimizada(self, X, y)</strong>: Ajusta a taxa de aprendizado de forma otimizada.</li>
+        <li><strong>implementar_aprendizado_semi_supervisionado(self, X_rotulados, y_rotulados, X_nao_rotulados)</strong>: Implementa aprendizado semi-supervisionado.</li>
+        <li><strong>atualizar_metrica(self, X, y)</strong>: Atualiza a métrica de desempenho do modelo.</li>
+        <li><strong>ajustar_inclusao_features(self, X, nova_feature)</strong>: Ajusta a inclusão de novas características nos dados.</li>
+        <li><strong>estimar_novos_dados(self, X)</strong>: Estima novos dados usando o modelo treinado.</li>
+        <li><strong>realizar_ajuste_treinamento(self, X, y, n_iter=1000, learning_rate=0.001)</strong>: Ajusta o treinamento com base em iterações e taxa de aprendizado.</li>
+        <li><strong>realizar_aprendizado_online(self, X, y)</strong>: Realiza treinamento online com mini-batches.</li>
+        <li><strong>gerar_mapa_calor(self, X, y)</strong>: Gera um mapa de calor para visualização das correlações entre as features.</li>
+        <li><strong>calcular_erro_classificacao(self, X, y)</strong>: Calcula o erro de classificação do modelo.</li>
+        <li><strong>treinar_com_regulacao_l2(self, X, y)</strong>: Aplica regularização L2 durante o treinamento.</li>
+        <li><strong>aplicar_extracao_features(self, X)</strong>: Aplica extração de características nos dados.</li>
+        <li><strong>realizar_classificacao_multiclasse(self, X, y)</strong>: Realiza classificação em múltiplas classes.</li>
+        <li><strong>implementar_redundancia_dados(self, X)</strong>: Implementa redundância de dados.</li>
+        <li><strong>realizar_ajuste_simples(self, X, y, parametros={})</strong>: Realiza ajuste simples de parâmetros.</li>
+        <li><strong>realizar_ajuste_com_modelo_final(self, X, y)</strong>: Ajusta o modelo final com os dados fornecidos.</li>
+        <li><strong>gerar_grafico_barras(self, X, y)</strong>: Gera um gráfico de barras para visualização da distribuição de classes.</li>
+        <li><strong>realizar_ajuste_hiperparametros_com_random_search(self, X, y)</strong>: Realiza ajuste de hiperparâmetros usando Random Search.</li>
+        <li><strong>treinar_com_cross_validation(self, X, y, n_folds=5)</strong>: Treina o modelo utilizando validação cruzada.</li>
+        <li><strong>calcular_erro_quadratico_medio(self, X, y)</strong>: Calcula o erro quadrático médio do modelo.</li>
+        <li><strong>ajustar_aprendizado_online(self, X, y, n_iter=1000)</strong>: Ajusta o modelo com aprendizado online.</li>
+        <li><strong>avaliar_com_metricas(self, X, y)</strong>: Avalia o modelo utilizando diversas métricas de desempenho.</li>
+        <li><strong>realizar_classificacao_com_xgboost(self, X, y)</strong>: Realiza a classificação utilizando o algoritmo XGBoost.</li>
+        <li><strong>treinar_com_early_stopping(self, X, y, n_iter=1000, patience=10)</strong>: Treina o modelo com early stopping para evitar overfitting.</li>
+        <li><strong>realizar_ajuste_com_k_fold(self, X, y, n_splits=5)</strong>: Realiza ajuste de hiperparâmetros usando K-Fold Cross Validation.</li>
+        <li><strong>gerar_gerenciamento_com_plot(self, X, y)</strong>: Gera gráficos para gerenciamento e visualização de desempenho.</li>
+        <li><strong>realizar_ajuste_learning_rate(self, X, y)</strong>: Ajusta a taxa de aprendizado do modelo durante o treinamento.</li>
+        <li><strong>gerar_grafico_aprendizado(self, X, y)</strong>: Gera um gráfico mostrando o aprendizado do modelo ao longo do tempo.</li>
+        <li><strong>realizar_classificacao_binaria(self, X, y)</strong>: Realiza a classificação binária usando o modelo treinado.</li>
+        <li><strong>realizar_aprendizado_pareado(self, X, y, modelo_pareado)</strong>: Realiza aprendizado utilizando um modelo pareado.</li>
+        <li><strong>calcular_erro_mean_absolute(self, X, y)</strong>: Calcula o erro absoluto médio do modelo.</li>
+        <li><strong>calcular_indice_de_silhueta(self, X, y)</strong>: Calcula o índice de silhueta para avaliar a qualidade da clusterização.</li>
+        <li><strong>realizar_ajuste_com_grid_search(self, X, y)</strong>: Realiza ajuste de hiperparâmetros usando Grid Search.</li>
+        <li><strong>treinar_com_batch_normalization(self, X, y)</strong>: Aplica normalização em batch durante o treinamento do modelo.</li>
+        <li><strong>realizar_classificacao_com_svm(self, X, y)</strong>: Realiza a classificação utilizando Support Vector Machines (SVM).</li>
+        <li><strong>realizar_ajuste_treinamento_multimodal(self, X1, X2, y)</strong>: Realiza ajuste de treinamento utilizando dados multimodais.</li>
+        <li><strong>calcular_matriz_covariancia(self, X)</strong>: Calcula a matriz de covariância dos dados.</li>
+        <li><strong>realizar_treinamento_com_early_stopping_e_monitoramento(self, X, y, n_iter=1000, patience=10)</strong>: Treina o modelo com early stopping e monitoramento de desempenho.</li>
+        <li><strong>realizar_treinamento_com_regularizacao_lasso(self, X, y)</strong>: Aplica regularização Lasso durante o treinamento.</li>
+        <li><strong>realizar_classificacao_com_decision_tree(self, X, y)</strong>: Realiza a classificação utilizando Decision Trees.</li>
+        <li><strong>realizar_ajuste_com_podamento(self, X, y)</strong>: Realiza ajuste no modelo usando podamento para evitar overfitting.</li>
+        <li><strong>gerar_grafico_curva_roc(self, X, y)</strong>: Gera a curva ROC para avaliação do modelo.</li>
+        <li><strong>realizar_aprendizado_com_matriz_confusao(self, X, y)</strong>: Realiza aprendizado utilizando a matriz de confusão.</li>
+        <li><strong>realizar_ajuste_treinamento_simplificado(self, X, y, n_iter=500)</strong>: Realiza ajuste de treinamento simplificado.</li>
+        <li><strong>realizar_ajuste_treinamento_em_modo_reduzido(self, X, y, n_iter=100)</strong>: Realiza ajuste de treinamento em modo reduzido.</li>
+        <li><strong>realizar_classificacao_com_knn(self, X, y)</strong>: Realiza a classificação utilizando K-Nearest Neighbors (KNN).</li>
+        <li><strong>realizar_aprendizado_com_dados_faltantes(self, X, y)</strong>: Realiza aprendizado considerando dados faltantes no conjunto.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Exemplos de Uso</h2>
+    <h3>Exemplo 1: Treinamento de uma Rede Neural</h3>
+    <div class="example">
+        <pre class="code-block">
+from neuraflow import RedeNeural
+rede = RedeNeural(camadas=[5, 3])
+rede.treinar(X_train, y_train)
+        </pre>
+    </div>
+
+    <h3>Exemplo 2: Avaliação do Modelo</h3>
+    <div class="example">
+        <pre class="code-block">
+precisao = rede.testar(X_test, y_test)
+print(f"Acurácia: {precisao * 100:.2f}%")
+        </pre>
+    </div>
+
+    <h3>Exemplo 3: Análise de Importância das Características</h3>
+    <div class="example">
+        <pre class="code-block">
+rede.analise_importancia(X_train)
+        </pre>
+    </div>
+
+    <h3>Exemplo 4: Validação Cruzada</h3>
+    <div class="example">
+        <pre class="code-block">
+rede.cross_validation(X_train, y_train, k=5)
+        </pre>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 NeuraFlow. Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>
